@@ -4,10 +4,14 @@ import 'package:stagexl/stagexl.dart';
 import './src/shibasquat.dart';
 
 Future<void> main() async {
-  var options = StageOptions()
-    ..backgroundColor = Color.White
+  StageXL.bitmapDataLoadOptions.corsEnabled = true;
+  
+  var options = new StageOptions()
+    ..stageAlign = StageAlign.TOP
+    ..stageScaleMode = StageScaleMode.SHOW_ALL
+    ..inputEventMode = InputEventMode.MouseAndTouch
     ..renderEngine = RenderEngine.WebGL
-    ..preventDefaultOnTouch = true;
+    ..backgroundColor = Color.White;
 
   var canvas = html.querySelector('#stage');
   var stage = Stage(canvas, width: 1280, height: 720, options: options);
