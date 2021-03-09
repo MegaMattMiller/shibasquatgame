@@ -14,8 +14,19 @@ Future<void> main() async {
   var renderLoop = RenderLoop();
   renderLoop.addStage(stage);
 
-  var entryPoint = ShibaSquat();
-  await entryPoint.init();
-  stage.addChild(entryPoint);
-  entryPoint.start();
+  var textFormat = TextFormat('Arial', 72, Color.Black)
+    ..align = TextFormatAlign.CENTER
+    ..verticalAlign = TextFormatVerticalAlign.CENTER;
+
+  var text = TextField('Start', textFormat)
+    ..width = 1280
+    ..height = 720
+    ..useHandCursor = true
+    ..addEventListener(MouseEvent.CLICK, (Event event) async {
+      var entryPoint = ShibaSquat();
+      await entryPoint.init();
+      stage.addChild(entryPoint);
+      entryPoint.start();
+    })
+    ..addTo(stage);
 }

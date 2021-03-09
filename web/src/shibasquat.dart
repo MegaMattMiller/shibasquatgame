@@ -23,6 +23,8 @@ class ShibaSquat extends Sprite {
     _setupKeys();
     _setupPetey();
     _setupScoreTracker();
+    var bgm = _resourceManager.getSound('bgm');
+    bgm.play(true);
   }
 
   Future<void> _loadAssets() async {
@@ -33,7 +35,8 @@ class ShibaSquat extends Sprite {
       ..addSound('grunt1', 'sounds/grunt1.mp3')
       ..addSound('grunt2', 'sounds/grunt2.mp3')
       ..addSound('grunt3', 'sounds/grunt3.mp3')
-      ..addSound('grunt4', 'sounds/grunt4.mp3');
+      ..addSound('grunt4', 'sounds/grunt4.mp3')
+      ..addSound('bgm', 'sounds/bgm.mp3');
 
     await _resourceManager.load();
   }
@@ -117,8 +120,7 @@ class Petey extends DisplayObjectContainer implements Animatable {
     } else {
       _isUp = true;
     }
-    if (_isUp != lastIsUp)
-    {
+    if (_isUp != lastIsUp) {
       dispatchEvent(Event(Event.CHANGE));
       if (_isUp == false) {
         _playGrunt();
