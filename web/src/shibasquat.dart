@@ -55,11 +55,9 @@ class ShibaSquat extends Sprite {
   void _setupKeys() {
     stage.focus = stage;
     stage.onKeyDown.listen((ke) {
-      if (![32].contains(ke.keyCode)) return;
       keyMap[ke.keyCode] = true;
     });
     stage.onKeyUp.listen((ke) {
-      if (![32].contains(ke.keyCode)) return;
       keyMap[ke.keyCode] = false;
     });
     _glassPlate.addEventListener(TouchEvent.TOUCH_BEGIN, (TouchEvent event) {
