@@ -6,7 +6,8 @@ import './src/shibasquat.dart';
 Future<void> main() async {
   var options = StageOptions()
     ..backgroundColor = Color.White
-    ..renderEngine = RenderEngine.WebGL;
+    ..renderEngine = RenderEngine.WebGL
+    ..preventDefaultOnTouch = true;
 
   var canvas = html.querySelector('#stage');
   var stage = Stage(canvas, width: 1280, height: 720, options: options);
