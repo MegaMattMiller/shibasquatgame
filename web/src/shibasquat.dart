@@ -7,6 +7,7 @@ class ShibaSquat extends Sprite {
   Map<int, bool> keyMap = <int, bool>{};
   ScoreTracker _scoreTracker;
   Petey _petey;
+  GlassPlate _glassPlate;
 
   bool get paused => _paused;
   set paused(bool value) => _paused = value;
@@ -25,6 +26,8 @@ class ShibaSquat extends Sprite {
     _setupScoreTracker();
     var bgm = _resourceManager.getSound('bgm');
     bgm.play(true);
+
+    addChild(_glassPlate);
   }
 
   Future<void> _loadAssets() async {
@@ -43,6 +46,10 @@ class ShibaSquat extends Sprite {
 
   Future<void> _buildUi() async {
     addChild(Bitmap(_resourceManager.getBitmapData('bg')));
+    _glassPlate = GlassPlate(1280, 720)
+      ..useHandCursor = true
+      ..mouseEnabled = true
+      ..addTo(this);
   }
 
   void _setupKeys() {
@@ -55,10 +62,16 @@ class ShibaSquat extends Sprite {
       if (![32].contains(ke.keyCode)) return;
       keyMap[ke.keyCode] = false;
     });
-    addEventListener(TouchEvent.TOUCH_BEGIN, (TouchEvent event) {
+    _glassPlate.addEventListener(TouchEvent.TOUCH_BEGIN, (TouchEvent event) {
       keyMap[32] = true;
     });
-    addEventListener(TouchEvent.TOUCH_END, (TouchEvent event) {
+    _glassPlate.addEventListener(TouchEvent.TOUCH_END, (TouchEvent event) {
+      keyMap[32] = false;
+    });
+    _glassPlate.addEventListener(MouseEvent.MOUSE_DOWN, (MouseEvent event) {
+      keyMap[32] = true;
+    });
+    _glassPlate.addEventListener(MouseEvent.MOUSE_UP, (MouseEvent event) {
       keyMap[32] = false;
     });
   }
