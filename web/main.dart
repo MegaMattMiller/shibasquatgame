@@ -23,12 +23,14 @@ Future<void> main() async {
     ..height = 720
     ..useHandCursor = true
     ..addEventListener(MouseEvent.CLICK, (Event event) async {
+      event.target.removeEventListeners(MouseEvent.CLICK);
       var entryPoint = ShibaSquat();
       await entryPoint.init();
       stage.addChild(entryPoint);
       entryPoint.start();
     })
     ..addEventListener(TouchEvent.TOUCH_TAP, (Event event) async {
+      event.target.removeEventListeners(TouchEvent.TOUCH_TAP);
       var entryPoint = ShibaSquat();
       await entryPoint.init();
       stage.addChild(entryPoint);
