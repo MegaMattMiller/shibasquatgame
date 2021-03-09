@@ -28,5 +28,11 @@ Future<void> main() async {
       stage.addChild(entryPoint);
       entryPoint.start();
     })
+    ..addEventListener(TouchEvent.TOUCH_TAP, (Event event) async {
+      var entryPoint = ShibaSquat();
+      await entryPoint.init();
+      stage.addChild(entryPoint);
+      entryPoint.start();
+    })
     ..addTo(stage);
 }
