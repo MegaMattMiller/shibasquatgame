@@ -55,10 +55,10 @@ class ShibaSquat extends Sprite {
       if (![32].contains(ke.keyCode)) return;
       keyMap[ke.keyCode] = false;
     });
-    stage.addEventListener(TouchEvent.TOUCH_BEGIN, (TouchEvent event) {
+    addEventListener(TouchEvent.TOUCH_BEGIN, (TouchEvent event) {
       keyMap[32] = true;
     });
-    stage.addEventListener(TouchEvent.TOUCH_END, (TouchEvent event) {
+    addEventListener(TouchEvent.TOUCH_END, (TouchEvent event) {
       keyMap[32] = false;
     });
   }
